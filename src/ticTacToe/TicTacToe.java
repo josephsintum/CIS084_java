@@ -1,7 +1,7 @@
 // Program Name: TicTacToe
-// Programmer:   Dan McElroy
+// Programmer:   Sintumnyuy Joseph
 // Class:        CIS-084 Java Programming
-// Date:         March 2, 2021
+// Date:         March 07, 2021
 // Version:      1.0
 
 package ticTacToe;
@@ -25,6 +25,13 @@ public class TicTacToe {
 
         // create the Scanner object
         Scanner stdin = new Scanner(System.in);
+
+        // print title
+        System.out.println("""
+                ===================
+                    TIC TAC TOE    
+                ===================
+                """);
 
         // select the starting player
         // Math.random() gives a double number between 0.0 and less than 1.0
@@ -70,7 +77,7 @@ public class TicTacToe {
 
         // The game is over. Either the game has been won or no more squares
         displayTicTacToe(board);
-        System.out.println("");   // blank line
+        System.out.println();   // blank line
         if (gameWinner == 'X' || gameWinner == 'O')
             System.out.printf("Player %c wins the game\n\n", gameWinner);
         else
@@ -80,13 +87,20 @@ public class TicTacToe {
 
     // ------ Display the Tic Tac Toe board
     public static void displayTicTacToe(char[][] board) {
-        System.out.println("");              // display an empty line
-        for (int row = 0; row < 3; row++)         // display three rows
-        {
-            for (int col = 0; col < 3; col++)     // display three columns each row
-                System.out.printf("%c ", board[row][col]);
-            System.out.println("");          // end of row
+        System.out.println();              // display an empty line
+
+        for (int row = 0; row < 3; row++) {        // display three rows
+            System.out.println("     |     |     ");
+
+            for (int col = 0; col < 3; col++) {     // display three columns each row
+                System.out.printf("  %c  ", board[row][col]);
+                if (col < 2) System.out.print("|");
+            }
+            System.out.println();
+            if (row < 2) System.out.println("_____|_____|_____");
+            else System.out.println("     |     |     ");
         }
+        System.out.println();
     } // end of displayTicTacToe(...)
 
 
@@ -96,23 +110,41 @@ public class TicTacToe {
     public static char checkForWinningGame(char[][] board) {
         char player;
 
-        // check going across the top row to see if all squares are the same
-        player = board[0][0];
-        if (board[0][1] == player && board[0][2] == player) return player;
+        if (Character.isLetter(board[0][0])) {
+            player = board[0][0];
 
-        // check going across the middle row to see if all squares are the same
+            // check going across the top row to see if all squares are the same
+            if (board[0][1] == player && board[0][2] == player) return player;
 
-        // check going across the bottom row to see if all squares are the same
+            // check going down the first column to see if all squares are the same
+            if (board[1][0] == player && board[2][0] == player) return player;
+        }
 
-        // check going down the first column to see if all squares are the same
+        if (Character.isLetter(board[2][2])) {
+            player = board[2][2];
 
-        // check going down the second column to see if all squares are the same
+            // check going across the bottom row to see if all squares are the same
+            if (board[2][0] == player && board[2][1] == player) return player;
 
-        // check going down the third column to see if all squares are the same
+            // check going down the third column to see if all squares are the same
+            if (board[0][2] == player && board[1][2] == player) return player;
+        }
 
-        // check going across the left diagonal \ to see if all squares are the same
+        if (Character.isLetter(board[1][1])) {
+            player = board[1][1];
 
-        // check going across the right diagonal / to see if all squares are the same
+            // check going across the middle row to see if all squares are the same
+            if (board[1][0] == player && board[1][2] == player) return player;
+
+            // check going down the second column to see if all squares are the same
+            if (board[0][1] == player && board[2][1] == player) return player;
+
+            // check going across the left diagonal \ to see if all squares are the same
+            if (board[0][0] == player && board[2][2] == player) return player;
+
+            // check going across the right diagonal / to see if all squares are the same
+            if (board[0][2] == player && board[2][0] == player) return player;
+        }
 
         return '-';     // if there is no winner
     } // end of checkForWinningGame(...)
