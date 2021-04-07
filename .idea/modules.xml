@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/BooksAndClothesPolymorphism/BooksAndClothesPolymorphism.iml" filepath="$PROJECT_DIR$/BooksAndClothesPolymorphism/BooksAndClothesPolymorphism.iml" />
       <module fileurl="file://$PROJECT_DIR$/assignments.iml" filepath="$PROJECT_DIR$/assignments.iml" />
+      <module fileurl="file://$PROJECT_DIR$/booksAndClothes/booksAndClothes.iml" filepath="$PROJECT_DIR$/booksAndClothes/booksAndClothes.iml" />
     </modules>
   </component>
 </project>
